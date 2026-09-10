@@ -1,2 +1,2 @@
 # programmeerimine2
-C#
+Vidrik Luts TA-25B
