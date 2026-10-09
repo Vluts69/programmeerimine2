@@ -12,6 +12,7 @@ namespace KooliProjekt.WebAPI
     public class Program
     {
         public static void Main(string[] args)
+
         {
             var builder = WebApplication.CreateBuilder(args);
 
@@ -38,7 +39,10 @@ namespace KooliProjekt.WebAPI
                 config.AddOpenBehavior(typeof(ValidationBehavior<,>));
                 config.AddOpenBehavior(typeof(TransactionalBehavior<,>));
             });
-
+           builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(
+        builder.Configuration.GetConnectionString("DefaultConnection")));
+ 
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -47,11 +51,26 @@ namespace KooliProjekt.WebAPI
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
-
+ 
             app.UseAuthorization();
 
 
             app.MapControllers();
+
+
+            using (var scope = app.Services.CreateScope())
+            {
+                var context = scope.ServiceProvider
+                    .GetRequiredService<ApplicationDbContext>();
+
+                context.Database.Migrate();
+
+                SeedData.Generate(context);
+                 
+            }
+
+
+
 
             app.Run();
         }
