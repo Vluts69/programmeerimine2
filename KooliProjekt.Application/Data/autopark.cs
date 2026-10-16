@@ -17,8 +17,7 @@ namespace KooliProjekt.Application.Data
         public string Kirjeldus { get; set; } 
         
 
-         [Required]
-        [Column(TypeName = "decimal(18, 2)")]
+    
         public decimal Toohind { get; set; }
         [Required]
         [StringLength(255)]

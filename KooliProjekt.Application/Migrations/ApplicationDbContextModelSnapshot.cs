@@ -30,13 +30,24 @@ namespace KooliProjekt.Application.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Mark")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<string>("Mudel")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<string>("Registreerimisnumber")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<string>("VIN")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.HasKey("Id");
 
@@ -52,13 +63,19 @@ namespace KooliProjekt.Application.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Broneering")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<string>("Kirjeldus")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<string>("Staatus")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<decimal>("Toohind")
                         .HasColumnType("decimal(18,2)");
@@ -66,31 +83,6 @@ namespace KooliProjekt.Application.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Autopargid");
-                });
-
-            modelBuilder.Entity("KooliProjekt.Application.Data.Leping", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<decimal>("Grandtotal")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("Kirjeldus")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("Makse")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<string>("Too")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Lepingud");
                 });
 
             modelBuilder.Entity("KooliProjekt.Application.Data.Tootaja", b =>
@@ -102,17 +94,52 @@ namespace KooliProjekt.Application.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("Kasutaja")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<string>("Nimi")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.Property<string>("Roll")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
 
                     b.HasKey("Id");
 
                     b.ToTable("Tootajad");
+                });
+
+            modelBuilder.Entity("Leping", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<decimal>("Grandtotal")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Kirjeldus")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.Property<decimal>("Makse")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Too")
+                        .IsRequired()
+                        .HasMaxLength(255)
+                        .HasColumnType("nvarchar(255)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Lepingud");
                 });
 #pragma warning restore 612, 618
         }

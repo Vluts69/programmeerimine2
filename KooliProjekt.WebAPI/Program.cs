@@ -6,24 +6,30 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
 
 namespace KooliProjekt.WebAPI
 {
     public class Program
     {
         public static void Main(string[] args)
-
         {
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
             var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 
-            // Add services to the container.
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
-            {
-                options.UseSqlServer(connectionString);
-            });
+    options.UseSqlServer(
+        connectionString,
+        sqlServerOptions =>
+        {
+            sqlServerOptions.MigrationsAssembly("KooliProjekt.Application");
+            sqlServerOptions.EnableRetryOnFailure(
+                maxRetryCount: 5,
+                maxRetryDelay: TimeSpan.FromSeconds(10),
+                errorNumbersToAdd: null);
+        }));
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -39,10 +45,7 @@ namespace KooliProjekt.WebAPI
                 config.AddOpenBehavior(typeof(ValidationBehavior<,>));
                 config.AddOpenBehavior(typeof(TransactionalBehavior<,>));
             });
-           builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(
-        builder.Configuration.GetConnectionString("DefaultConnection")));
- 
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -51,24 +54,21 @@ namespace KooliProjekt.WebAPI
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
- 
+
             app.UseAuthorization();
 
 
             app.MapControllers();
 
-
             using (var scope = app.Services.CreateScope())
+            using (var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>())
             {
-                var context = scope.ServiceProvider
-                    .GetRequiredService<ApplicationDbContext>();
 
-                context.Database.Migrate();
+#if (DEBUG)
 
-                SeedData.Generate(context);
-                 
+                SeedData.Generate(dbContext);
+#endif
             }
-
 
 
 

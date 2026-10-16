@@ -10,15 +10,11 @@ public class Leping
         [Required]
         [StringLength(255)]
         public string Too { get; set; }
-
-         [Required]
-        [Column(TypeName = "decimal(10, 2)")]
         public decimal Makse { get; set; }
         [Required]
         [StringLength(255)]
         public string Kirjeldus { get; set; }
 
-         [Required]
-        [Column(TypeName = "decimal(18, 2)")]
+   
         public decimal Grandtotal { get; set; }
     }

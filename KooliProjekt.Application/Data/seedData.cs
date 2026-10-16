@@ -12,20 +12,26 @@ namespace KooliProjekt.Application.Data
     {
         public static void Generate(ApplicationDbContext context)
         {
-            if (context.Tootajad.Any() ||
-                context.Autod.Any() ||
-                context.Lepingud.Any() ||
-                context.Autopargid.Any())
+            if (!context.Tootajad.Any())
             {
-                return;
+                SeedTootajad(context);
             }
 
-            SeedTootajad(context);
-            SeedAutod(context);
-            SeedLepingud(context);
-            SeedAutopargid(context);
-        }
+            if (!context.Autod.Any())
+            {
+                SeedAutod(context);
+            }
 
+            if (!context.Lepingud.Any())
+            {
+                SeedLepingud(context);
+            }
+
+            if (!context.Autopargid.Any())
+            {
+                SeedAutopargid(context);
+            }
+        }
         // Töötajate lisamine
         private static void SeedTootajad(ApplicationDbContext context)
         {
@@ -76,43 +82,43 @@ namespace KooliProjekt.Application.Data
         private static void SeedAutod(ApplicationDbContext context)
         {
             var autod = new List<Auto>
-            {
-                new Auto { Mark = "Toyota", Mudel = "Corolla", Registreerimisnumber = "123ABC" },
-                new Auto { Mark = "Volkswagen", Mudel = "Golf", Registreerimisnumber = "234BCD" },
-                new Auto { Mark = "Skoda", Mudel = "Octavia", Registreerimisnumber = "345CDE" },
-                new Auto { Mark = "Ford", Mudel = "Focus", Registreerimisnumber = "456DEF" },
-                new Auto { Mark = "BMW", Mudel = "320d", Registreerimisnumber = "567EFG" },
-                new Auto { Mark = "Audi", Mudel = "A4", Registreerimisnumber = "678FGH" },
-                new Auto { Mark = "Volvo", Mudel = "V60", Registreerimisnumber = "789GHI" },
-                new Auto { Mark = "Mercedes-Benz", Mudel = "C200", Registreerimisnumber = "890HIJ" },
-                new Auto { Mark = "Kia", Mudel = "Ceed", Registreerimisnumber = "901IJK" },
-                new Auto { Mark = "Hyundai", Mudel = "i30", Registreerimisnumber = "112JKL" },
-                new Auto { Mark = "Mazda", Mudel = "6", Registreerimisnumber = "223KLM" },
-                new Auto { Mark = "Honda", Mudel = "Civic", Registreerimisnumber = "334LMN" },
-                new Auto { Mark = "Nissan", Mudel = "Qashqai", Registreerimisnumber = "445MNO" },
-                new Auto { Mark = "Peugeot", Mudel = "308", Registreerimisnumber = "556NOP" },
-                new Auto { Mark = "Renault", Mudel = "Clio", Registreerimisnumber = "667OPQ" },
-                new Auto { Mark = "Opel", Mudel = "Astra", Registreerimisnumber = "778PQR" },
-                new Auto { Mark = "Dacia", Mudel = "Duster", Registreerimisnumber = "889QRS" },
-                new Auto { Mark = "Subaru", Mudel = "Outback", Registreerimisnumber = "990RST" },
-                new Auto { Mark = "Tesla", Mudel = "Model 3", Registreerimisnumber = "101STU" },
-                new Auto { Mark = "Toyota", Mudel = "RAV4", Registreerimisnumber = "212TUV" },
-                new Auto { Mark = "Volkswagen", Mudel = "Passat", Registreerimisnumber = "323UVW" },
-                new Auto { Mark = "Skoda", Mudel = "Superb", Registreerimisnumber = "434VWX" },
-                new Auto { Mark = "Ford", Mudel = "Mondeo", Registreerimisnumber = "545WXY" },
-                new Auto { Mark = "BMW", Mudel = "X3", Registreerimisnumber = "656XYZ" },
-                new Auto { Mark = "Audi", Mudel = "Q5", Registreerimisnumber = "767ABC" },
-                new Auto { Mark = "Volvo", Mudel = "XC60", Registreerimisnumber = "878BCD" },
-                new Auto { Mark = "Mercedes-Benz", Mudel = "E220", Registreerimisnumber = "989CDE" },
-                new Auto { Mark = "Kia", Mudel = "Sportage", Registreerimisnumber = "191DEF" },
-                new Auto { Mark = "Hyundai", Mudel = "Tucson", Registreerimisnumber = "292EFG" },
-                new Auto { Mark = "Mazda", Mudel = "CX-5", Registreerimisnumber = "393FGH" },
-                new Auto { Mark = "Honda", Mudel = "CR-V", Registreerimisnumber = "494GHI" },
-                new Auto { Mark = "Nissan", Mudel = "Juke", Registreerimisnumber = "595HIJ" },
-                new Auto { Mark = "Peugeot", Mudel = "3008", Registreerimisnumber = "696IJK" },
-                new Auto { Mark = "Renault", Mudel = "Megane", Registreerimisnumber = "797JKL" },
-                new Auto { Mark = "Opel", Mudel = "Insignia", Registreerimisnumber = "898KLM" }
-            };
+    {
+        new Auto { Mark = "Toyota", Mudel = "Corolla", Registreerimisnumber = "123ABC", VIN = "JTDBR32E100000001" },
+        new Auto { Mark = "Volkswagen", Mudel = "Golf", Registreerimisnumber = "234BCD", VIN = "WVWZZZ1KZ10000002" },
+        new Auto { Mark = "Skoda", Mudel = "Octavia", Registreerimisnumber = "345CDE", VIN = "TMBJG7NE0A0000003" },
+        new Auto { Mark = "Ford", Mudel = "Focus", Registreerimisnumber = "456DEF", VIN = "WF0AXXWPM10000004" },
+        new Auto { Mark = "BMW", Mudel = "320d", Registreerimisnumber = "567EFG", VIN = "WBA3B5C50DF000005" },
+        new Auto { Mark = "Audi", Mudel = "A4", Registreerimisnumber = "678FGH", VIN = "WAUZZZ8K9AA000006" },
+        new Auto { Mark = "Volvo", Mudel = "V60", Registreerimisnumber = "789GHI", VIN = "YV1FW8250A1000007" },
+        new Auto { Mark = "Mercedes-Benz", Mudel = "C200", Registreerimisnumber = "890HIJ", VIN = "WDD2040411A000008" },
+        new Auto { Mark = "Kia", Mudel = "Ceed", Registreerimisnumber = "901IJK", VIN = "U5YHN512ABL000009" },
+        new Auto { Mark = "Hyundai", Mudel = "i30", Registreerimisnumber = "112JKL", VIN = "TMAH3512AAJ000010" },
+        new Auto { Mark = "Mazda", Mudel = "6", Registreerimisnumber = "223KLM", VIN = "JMZGH12F601000011" },
+        new Auto { Mark = "Honda", Mudel = "Civic", Registreerimisnumber = "334LMN", VIN = "SHHFK2760AU000012" },
+        new Auto { Mark = "Nissan", Mudel = "Qashqai", Registreerimisnumber = "445MNO", VIN = "SJNFAAJ10U1000013" },
+        new Auto { Mark = "Peugeot", Mudel = "308", Registreerimisnumber = "556NOP", VIN = "VF34C5FWC9S000014" },
+        new Auto { Mark = "Renault", Mudel = "Clio", Registreerimisnumber = "667OPQ", VIN = "VF1BR1S0640000015" },
+        new Auto { Mark = "Opel", Mudel = "Astra", Registreerimisnumber = "778PQR", VIN = "W0L0AHL0880000016" },
+        new Auto { Mark = "Dacia", Mudel = "Duster", Registreerimisnumber = "889QRS", VIN = "UU1HSDACG50000017" },
+        new Auto { Mark = "Subaru", Mudel = "Outback", Registreerimisnumber = "990RST", VIN = "JF1BR9LC0AG000018" },
+        new Auto { Mark = "Tesla", Mudel = "Model 3", Registreerimisnumber = "101STU", VIN = "5YJ3E1EA0KF000019" },
+        new Auto { Mark = "Toyota", Mudel = "RAV4", Registreerimisnumber = "212TUV", VIN = "JTMBFREV0DD000020" },
+        new Auto { Mark = "Volkswagen", Mudel = "Passat", Registreerimisnumber = "323UVW", VIN = "WVWZZZ3CZBE000021" },
+        new Auto { Mark = "Skoda", Mudel = "Superb", Registreerimisnumber = "434VWX", VIN = "TMBAB73T5C0000022" },
+        new Auto { Mark = "Ford", Mudel = "Mondeo", Registreerimisnumber = "545WXY", VIN = "WF0GXXGBBG0000023" },
+        new Auto { Mark = "BMW", Mudel = "X3", Registreerimisnumber = "656XYZ", VIN = "WBAWX310X0L000024" },
+        new Auto { Mark = "Audi", Mudel = "Q5", Registreerimisnumber = "767ABC", VIN = "WAUZZZ8R0AA000025" },
+        new Auto { Mark = "Volvo", Mudel = "XC60", Registreerimisnumber = "878BCD", VIN = "YV1DZ8256A2000026" },
+        new Auto { Mark = "Mercedes-Benz", Mudel = "E220", Registreerimisnumber = "989CDE", VIN = "WDD2120021A000027" },
+        new Auto { Mark = "Kia", Mudel = "Sportage", Registreerimisnumber = "191DEF", VIN = "U5YPC813AAL000028" },
+        new Auto { Mark = "Hyundai", Mudel = "Tucson", Registreerimisnumber = "292EFG", VIN = "TMAJ3812AAJ000029" },
+        new Auto { Mark = "Mazda", Mudel = "CX-5", Registreerimisnumber = "393FGH", VIN = "JMZKE897801000030" },
+        new Auto { Mark = "Honda", Mudel = "CR-V", Registreerimisnumber = "494GHI", VIN = "SHSRE4870AU000031" },
+        new Auto { Mark = "Nissan", Mudel = "Juke", Registreerimisnumber = "595HIJ", VIN = "SJNFAAF15U1000032" },
+        new Auto { Mark = "Peugeot", Mudel = "3008", Registreerimisnumber = "696IJK", VIN = "VF30U5FVACS000033" },
+        new Auto { Mark = "Renault", Mudel = "Megane", Registreerimisnumber = "797JKL", VIN = "VF1BZ1G0640000034" },
+        new Auto { Mark = "Opel", Mudel = "Insignia", Registreerimisnumber = "898KLM", VIN = "W0LGT8EM1A1000035" }
+    };
 
             context.Autod.AddRange(autod);
             context.SaveChanges();
