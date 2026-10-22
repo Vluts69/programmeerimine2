@@ -6,7 +6,7 @@ using KooliProjekt.Application.Data;
 using MediatR;
 using System.Collections.Generic;
 
-namespace KooliProjekt.Application.Queries.Autod
+namespace KooliProjekt.Application.Features.auto
 {
     public class ListAutodQuery : IRequest<List<Auto>>
     {

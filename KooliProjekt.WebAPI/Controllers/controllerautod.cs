@@ -1,4 +1,4 @@
-﻿using KooliProjekt.Application.Queries.Autod;
+﻿using KooliProjekt.Application.Features.auto;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;

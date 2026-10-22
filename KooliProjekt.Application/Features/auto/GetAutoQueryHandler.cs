@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 
 
-namespace KooliProjekt.Application.Queries.Autod
+namespace KooliProjekt.Application.Features.auto
 {
     public class GetAutoQueryHandler
         : IRequestHandler<GetAutoQuery, Auto?>

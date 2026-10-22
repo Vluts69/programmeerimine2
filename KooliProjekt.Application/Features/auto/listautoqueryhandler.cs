@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 
 
-namespace KooliProjekt.Application.Queries.Autod
+namespace KooliProjekt.Application.Features.auto
 {
     public class ListAutodQueryHandler
         : IRequestHandler<ListAutodQuery, List<Auto>>

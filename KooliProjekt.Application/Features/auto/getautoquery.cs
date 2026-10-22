@@ -5,7 +5,7 @@ using KooliProjekt.Application.Data;
 using MediatR;
 
 
-namespace KooliProjekt.Application.Queries.Autod
+namespace KooliProjekt.Application.Features.auto
 {
     public class GetAutoQuery : IRequest<Auto?>
     {
