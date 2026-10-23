@@ -2,9 +2,16 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace KooliProjekt.Application.Features.Leping
+using KooliProjekt.Application.Data;
+using MediatR;
+
+
+namespace KooliProjekt.Application.Features.leping
 {
-    internal class listLepingquery
+    public class ListLepingQuery : IRequest<List<KooliProjekt.Application.Data.Leping?>>
     {
+        public int Id { get; set; }
+        
+
     }
 }

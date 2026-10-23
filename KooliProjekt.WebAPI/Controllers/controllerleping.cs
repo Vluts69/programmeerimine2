@@ -1,4 +1,5 @@
-﻿using KooliProjekt.Application.Features.Leping;
+﻿using KooliProjekt.Application.Features.leping;
+using KooliProjekt.Application.Features.Leping;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -24,7 +25,7 @@ namespace KooliProjekt.WebAPI.Controllers
                 return NotFound();
             }
 
-            var result = await Mediator.Send(new GetLepingquery { Id = id });
+            var result = await Mediator.Send(new GetLepingQuery { Id = id });
 
             if (result == null)
             {
@@ -37,7 +38,7 @@ namespace KooliProjekt.WebAPI.Controllers
         [HttpGet]
         public async Task<IActionResult> List()
         {
-            var result = await Mediator.Send(new ListlepingQuery());
+            var result = await Mediator.Send(new ListLepingQuery());
 
             return Ok(result);
         }

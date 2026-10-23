@@ -4,9 +4,11 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace KooliProjekt.Application.Features.Leping
+
+namespace KooliProjekt.Application.Features.leping
 {
-    public class GetlepingQuery : IRequest<Leping?>
+    public class GetLepingQuery
+        : IRequest<KooliProjekt.Application.Data.Leping?>
     {
         public int Id { get; set; }
     }

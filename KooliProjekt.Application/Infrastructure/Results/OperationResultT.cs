@@ -6,10 +6,10 @@
 
         public OperationResult() { }
 
-        public OperationResult(T value) 
-        { 
+        public OperationResult(T value)
+        {
             Value = value;
-        }        
+        }
 
         public new OperationResult<T> AddError(string error)
         {
